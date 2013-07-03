@@ -19,6 +19,7 @@ class Form(dict):
     def data(self):
         raise NotImplementedError
 
+
 class FormApplication(Form):
 
     def __init__(self, name, method, action):
@@ -38,12 +39,13 @@ class FormApplication(Form):
         data = urllib.urlencode(data)
         return data
 
+
 class FormMultiPart(Form):
-    
+
     def __init__(self, name, method, action):
         super(FormMultiPart, self).__init__(name, method, action)
         rand_strs = ''.join(random.choice('abcdefghijklmnopqrstuvwxyz1234567890') for i in xrange(30))
-        self.boundary = 'sarasa%s' % rand_strs 
+        self.boundary = 'sarasa%s' % rand_strs
         self.enctype = 'multipart/form-data'
         self.contenttype = ', '.join([self.enctype, 'boundary=' + self.boundary])
 
@@ -64,4 +66,3 @@ class FormMultiPart(Form):
         data = ('\r\n--%s\r\n' % self.boundary).join(values)
         data += '\r\n--%s--\r\n' % self.boundary
         return data
-

@@ -1,46 +1,47 @@
 # -*- coding: utf-8 -*-
 import sgmllib
 
-from browser.controls import Link
-from browser.controls import File
-from browser.controls import Image
-from browser.controls import Radio
-from browser.controls import Submit
-from browser.controls import Button
-from browser.controls import Select
-from browser.controls import Option
-from browser.controls import TextArea
-from browser.controls import CheckBox
-from browser.controls import InputText
-from browser.controls import InputHidden
-from browser.controls import InputPassword
+from v12.controls import Link
+from v12.controls import File
+from v12.controls import Image
+from v12.controls import Radio
+from v12.controls import Submit
+from v12.controls import Button
+from v12.controls import Select
+from v12.controls import Option
+from v12.controls import TextArea
+from v12.controls import CheckBox
+from v12.controls import InputText
+from v12.controls import InputHidden
+from v12.controls import InputPassword
 
-from browser.form import FormApplication
-from browser.form import FormMultiPart
+from v12.form import FormApplication
+from v12.form import FormMultiPart
 
 
 CONTROLS = {
-                "text": InputText,
-                "hidden": InputHidden,
-                "submit": Submit,
-                "button": Button,
-                "password": InputPassword,
-                "checkbox": CheckBox,
-                "radio": Radio,
-                "file": File,
-                "image": Image,
-                "textarea": TextArea,
-                "select": Select,
-                "option": Option,
+    "text": InputText,
+    "hidden": InputHidden,
+    "submit": Submit,
+    "button": Button,
+    "password": InputPassword,
+    "checkbox": CheckBox,
+    "radio": Radio,
+    "file": File,
+    "image": Image,
+    "textarea": TextArea,
+    "select": Select,
+    "option": Option,
 }
 
 FORMS = {
-            "application/x-www-form-urlencoded": FormApplication,
-            "multipart/form-data": FormMultiPart,
+    "application/x-www-form-urlencoded": FormApplication,
+    "multipart/form-data": FormMultiPart,
 }
 
+
 class HTTPParser(sgmllib.SGMLParser):
-    
+
     def __init__(self):
         sgmllib.SGMLParser.__init__(self)
         self.forms = []
@@ -50,8 +51,8 @@ class HTTPParser(sgmllib.SGMLParser):
     def feed(self, data):
         try:
             sgmllib.SGMLParser.feed(self, data.body)
-        except sgmllib.SGMLParseError, exc: 
-            raise sgmllib.ParseError(exc) 
+        except sgmllib.SGMLParseError, exc:
+            raise sgmllib.ParseError(exc)
 
 
     def start_label(self, attrs):
@@ -63,7 +64,7 @@ class HTTPParser(sgmllib.SGMLParser):
             raise Exception("Control not Supported textarea")
         control_obj = control.create(attrs)
         self._form[control_obj.name] = control_obj
- 
+
     def start_select(self, attrs):
         import logging
         logging.debug('Parsing select %s' % attrs)

@@ -3,7 +3,7 @@ class Link(dict):
     pass
 
 class Input(object):
-    pass    
+    pass
 
 class TextArea(object):
 
@@ -20,7 +20,7 @@ class TextArea(object):
         self.name = name
 
 class InputText(Input):
-    
+
     @classmethod
     def create(cls, attrs):
         name = None
@@ -46,7 +46,7 @@ class InputHidden(Input):
                 hidden_value = value
 
         return cls(name, hidden_value)
-    
+
     def __init__(self, name, value):
         self.name = name
         self.value = value
@@ -70,13 +70,13 @@ class CheckBox(Input):
 
 
 class InputSource(Input):
-    
+
     @classmethod
     def create(cls, attrs):
         raise NotImplementedError
 
 class Select(object):
-    
+
     @classmethod
     def create(cls, attrs):
         name = None
@@ -115,7 +115,7 @@ class Option(object):
         self.value = option_value
 
 class Radio(object):
-    
+
     @classmethod
     def create(cls, attrs):
         pass
@@ -129,7 +129,7 @@ class File(object):
         #raise NotImplementedError
 
 class Image(object):
-    
+
     @classmethod
     def create(cls, attrs):
         import logging
@@ -144,7 +144,7 @@ class Image(object):
         self.src = src
 
 class Submit(object):
-    
+
     @classmethod
     def create(cls, attrs):
         name_attr = None

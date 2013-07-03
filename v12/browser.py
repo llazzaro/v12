@@ -26,6 +26,7 @@ class BeginningPrinter(Protocol):
         self.browser.response_received(self.response_data)
         self.finished.callback(None)
 
+
 class StringProducer(object):
     implements(IBodyProducer)
 
@@ -43,6 +44,7 @@ class StringProducer(object):
     def stopProducing(self):
         pass
 
+
 class Response(object):
 
     def __init__(self, data):
@@ -53,7 +55,7 @@ class Response(object):
 
 
 class Browser(object):
-    
+
     def __init__(self, url=None):
         self.url = url
         self._forms = {}
@@ -121,7 +123,7 @@ class Browser(object):
 
 #        for set_cookie in response.headers.get('Set-Cookie') or []:
 #            self.cookies.extend(set_cookie.split(';'))
-            
+
         self._response = response
         self._find_controls(response)
 #        defer.returnValue(self._response_received(response))
@@ -144,7 +146,7 @@ class Browser(object):
             form_action = action
         else:
             form_action = self.form.action
-        
+
         data = selected_form.data()
         logging.debug('data body %s' % data)
 
@@ -180,7 +182,7 @@ class Browser(object):
         self._links = parser.links
 #        for (name, action, method, enctype), ettrs, controls in form_parser.forms:
 #            pass
-    
+
     def response(self):
         return self._response
 
