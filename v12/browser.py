@@ -2,19 +2,16 @@
 
 import logging
 
-
-
 from zope.interface import implements
 
-from twisted.python.log import err
 from twisted.web.iweb import IBodyProducer
 from twisted.internet import defer
-from twisted.python import log
 from twisted.internet.protocol import Protocol
 
-from http.parser import HTTPParser
-from http.client import v12HTTPAgent
-from http.header import Headers
+from v12.http.parser import HTTPParser
+from v12.http.client import v12HTTPAgent
+from v12.http.header import Headers
+
 
 class BeginningPrinter(Protocol):
     def __init__(self, finished, browser):
