@@ -8,7 +8,8 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
     'twisted',
-    ]
+    'pyopenssl',
+]
 
 setup(name='v12',
       version='0.1',
